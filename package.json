@@ -109,7 +109,7 @@
     "url": "git+https://github.com/o1lab/xmysql.git"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "test": "mocha tests/*.js --exit"
   },
   "version": "0.4.2"
