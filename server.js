@@ -14,7 +14,11 @@ const Xapi = require('./lib/xapi.js');
 
 //cmdargs.handle(sqlConfig);
 
-const sqlConfig = require('./config.js');
+try {
+    const sqlConfig = require('./config.js');
+} catch (err) {
+    const sqlConfig = require('../api-config.js');
+}
 
 //console.log(sqlConfig);
 
