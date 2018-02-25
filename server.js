@@ -7,7 +7,7 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const dataHelp = require('./lib/util/data.helper.js');
-const auth = require('./lib/auth.js');
+const AuthPlugin = require('./lib/auth.js');
 
 const Xapi = require('./lib/xapi.js');
 //const cmdargs = require('./lib/util/cmd.helper.js');
@@ -20,8 +20,9 @@ const sqlConfig = require('./config.js');
 
 /**************** START : setup express ****************/
 let app = express();
+
 app.use(morgan('tiny'));
-app.use(auth);
+//app.use(AuthPlugin.access());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -57,5 +58,7 @@ moreApis.init((err, results) => {
   console.log('                                                            ');
   console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ');
 
+  var login = require('./helper/login');
+  var auth = new AuthPlugin(moreApis, login);
 });
 /**************** END : setup Xapi ****************/
