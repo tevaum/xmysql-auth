@@ -5,3 +5,5 @@ env_variables:
   SQL_PASSWORD: Compr@s10
   SQL_DATABASE: compras2
   INSTANCE_CONNECTION_NAME: compras-196314:southamerica-east1:compras
+beta_settings:
+  cloud_sql_instances: compras-196314:southamerica-east1:compras
