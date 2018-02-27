@@ -22,8 +22,8 @@ const sqlConfig = require('./config.js');
 let app = express();
 
 app.use(morgan('tiny'));
-app.use(AuthPlugin.authn());
-app.use(AuthPlugin.authz());
+app.use(AuthPlugin.authn);
+app.use(AuthPlugin.authz);
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
