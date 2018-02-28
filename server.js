@@ -21,7 +21,7 @@ const sqlConfig = require('./config.js');
 /**************** START : setup express ****************/
 let app = express();
 
-app.use(morgan('tiny'));
+app.use(morgan('common'));
 app.use(AuthPlugin.authn);
 //app.use(AuthPlugin.authz);
 app.use(cors());
