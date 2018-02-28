@@ -15,7 +15,7 @@ var Login = {
 	    return;
 	} else if (user.adm_global == 1  || (user.adm_local == 1 && user.cliente_status == 1)) {
 	    Login.access(user.email, (login, access_data) => {
-		console.log('[Login] Retrieved access data for user', login + ':', access_data);
+		console.log('[Login] Access data for', login, 'retrieved.');
 		callback({login: user.email, cache: access_data});
 	    });
 
