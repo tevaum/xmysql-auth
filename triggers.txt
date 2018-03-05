@@ -1,0 +1,35 @@
+DELIMITER |
+
+CREATE TRIGGER conta_cliente AFTER INSERT ON cad_cliente
+FOR EACH ROW
+  BEGIN
+    INSERT INTO fin_plano_conta (num_conta, nome_conta, idcad_cliente) VALUES (CONCAT_WS('.', (select conta_cliente from sys_parametro), lpad(new.idcad_cliente, 6, '0')), new.razao_social, new.idcad_cliente);
+  END;
+|
+
+CREATE TRIGGER update_conta_cliente AFTER UPDATE ON cad_cliente
+FOR EACH ROW
+  BEGIN
+    IF (old.razao_social != new.razao_social) THEN
+      UPDATE fin_plano_conta set nome_conta = new.razao_social where idcad_cliente = new.idcad_cliente;
+    END IF;
+  END;
+|
+
+CREATE TRIGGER conta_fornecedor AFTER INSERT ON cad_fornecedor
+FOR EACH ROW
+  BEGIN
+    INSERT INTO fin_plano_conta (num_conta, nome_conta, idcad_fornecedor) VALUES (CONCAT_WS('.', (select conta_fornecedor from sys_parametro), lpad(new.idcad_fornecedor, 6, '0')), new.razao_social, new.idcad_fornecedor);
+  END;
+|
+
+CREATE TRIGGER update_conta_fornecedor AFTER UPDATE ON cad_fornecedor
+FOR EACH ROW
+  BEGIN
+    IF (old.razao_social != new.razao_social) THEN
+      UPDATE fin_plano_conta set nome_conta = new.razao_social where idcad_fornecedor = new.idcad_fornecedor;
+    END IF;
+  END;
+|
+
+DELIMITER ;
